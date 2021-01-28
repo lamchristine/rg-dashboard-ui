@@ -1,6 +1,5 @@
 import * as React from 'react';
-// import './Search.css';
-import { Button, Input } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 
 export function Search(): React.ReactElement {
 

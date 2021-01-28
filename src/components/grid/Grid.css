@@ -1,0 +1,43 @@
+.Grid-text--green {
+  color: #137333;
+}
+
+.Grid-text--red {
+  color: #a50e0e;
+}
+
+.Grid-text--green-background {
+  font-weight: bold;
+  background: #e6f4ea;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.Grid-text--red-background {
+  font-weight: bold;
+  background: #fce8e6;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+td.Right-align {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ui.label {
+  color: white !important;
+  width: 100% !important;
+}
+
+td.one.wide.Ticker-label {
+  padding-right: 0px !important;
+}
+
+table {
+  border-radius: 0 !important;
+  border-top: 1px solid rgba(34,36,38,.1) !important;
+  border-bottom: 1px solid rgba(34,36,38,.1) !important;
+}
