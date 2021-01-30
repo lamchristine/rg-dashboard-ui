@@ -1,21 +1,22 @@
 import * as React from 'react';
 
-import { DataTable } from './components/dataTable/DataTable';
+// import { DataTable } from './components/dataTable/DataTable';
 import { Header } from './components/header/Header';
-import { Search } from './components/search/Search';
+// import { Search } from './components/search/Search';
 import { Subheader } from './components/subheader/Subheader';
 import { Watchlist } from './components/watchlist/Watchlist';
 
-import { Segment, Grid } from 'semantic-ui-react';
+// import { Segment, Grid } from 'semantic-ui-react';
 
 
-import { MOST_ACTIVE } from './seed/mostActive.constant';
+// import { MOST_ACTIVE } from './seed/mostActive.constant';
 
 import './App.css';
 
 function App() {
-  const stockData = MOST_ACTIVE;
 
+
+  // const stockData = MOST_ACTIVE;
   const watchlists = [
     {
       name: 'Watchlist A',
@@ -70,13 +71,14 @@ function App() {
       ]
     }
   ]
+  const [watchlist, setWatchlist] = React.useState(watchlists[0]);
 
   return (
     <>
       <Header></Header>
-      <Subheader watchlists={watchlists}></Subheader>
+      <Subheader watchlists={watchlists} handleClick={setWatchlist}></Subheader>
       <div className="Container-wrapper">
-        <Watchlist list={watchlists[0]}></Watchlist>
+        <Watchlist list={watchlist}></Watchlist>
       </div>
     </>
   );

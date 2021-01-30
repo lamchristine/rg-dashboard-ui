@@ -6,8 +6,13 @@ import './Subheader.css';
 
 export function Subheader(props: any): React.ReactElement {
   const watchlists = props.watchlists.map((list: any) =>
-    <Button key={list.id}><Icon name="list alternate"></Icon>{list.name}</Button>
+    <Button key={list.id} onClick={() => props.handleClick(list)}><Icon name="list alternate"></Icon>{list.name}</Button>
   );
+
+  function handleClick(list: any) {
+
+    console.log('click', list)
+  }
 
   return (
     <>

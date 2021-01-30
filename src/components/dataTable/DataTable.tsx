@@ -7,7 +7,7 @@ export function DataTable(props: any): React.ReactElement {
   const upArrow = <Icon name="arrow up" />
 
   const gridRows = props.data.map((stock: any) =>
-    <Table.Row>
+    <Table.Row key={stock.ticker}>
       {/* Ticker label */}
       <Table.Cell className="Ticker-label" width="1">
         <Label

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { DataTable } from '../dataTable/DataTable';
 
-import { Button, Grid, Header, Icon } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 
 export function Watchlist(props: any): React.ReactElement {
 
