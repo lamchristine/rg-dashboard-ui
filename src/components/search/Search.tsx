@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Input } from 'semantic-ui-react';
 
+import './Search.css';
+
 export function Search(): React.ReactElement {
 
   function handleSubmit() {
@@ -11,10 +13,13 @@ export function Search(): React.ReactElement {
     <>
       <form onSubmit={() => handleSubmit()}>
         <Input
-          action="Search"
-          placeholder="Search"
+          fluid
+          placeholder="Search for stocks"
           type="text"
           name="text"
+          icon="search"
+          iconPosition="left"
+          size="large"
         />
       </form>
     </>

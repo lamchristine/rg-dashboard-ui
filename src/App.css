@@ -38,10 +38,10 @@
 } */
 
 .Container-wrapper {
-  padding: 50px 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 50px 150px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
 }
 /*
 .Search-bar {
@@ -53,4 +53,12 @@
 .Grid {
   width: 100%;
   margin-top: 25px;
+}
+
+/* .container {
+  border: 1px solid black !important
+} */
+
+.Text-align-center {
+  text-align: center;
 }

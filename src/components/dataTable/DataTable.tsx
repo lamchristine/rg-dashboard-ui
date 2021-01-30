@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Label, Icon, Table } from 'semantic-ui-react';
-import './Grid.css';
+import './DataTable.css';
 
-export function Grid(props: any): React.ReactElement {
+export function DataTable(props: any): React.ReactElement {
   const downArrow = <Icon name="arrow down" />
   const upArrow = <Icon name="arrow up" />
 
-  const gridRows = props.gridData.map((stock: any) =>
+  const gridRows = props.data.map((stock: any) =>
     <Table.Row>
       {/* Ticker label */}
       <Table.Cell className="Ticker-label" width="1">
@@ -48,9 +48,9 @@ export function Grid(props: any): React.ReactElement {
         </div>
       </Table.Cell>
 
-      {/* Add to watchlist icon */}
+      {/* Remove from watchlist icon */}
       <Table.Cell textAlign="center" width="2" >
-        <Icon circular name="plus" />
+        <Icon circular name="close" />
       </Table.Cell>
     </Table.Row>
   );
