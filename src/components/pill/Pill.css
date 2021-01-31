@@ -1,0 +1,13 @@
+.Pill {
+  border: 1px solid grey;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline;
+  margin-right: 10px;
+}
+
+.Pill .icon {
+  margin-left: 5px;
+  margin-right: 0;
+}

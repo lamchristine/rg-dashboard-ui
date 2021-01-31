@@ -28,7 +28,8 @@ function App() {
           name: 'Facebook, Inc. Common Stock',
           current_price: 272.14,
           price_down: 9.91,
-          price_down_percentage: 3.51
+          price_down_percentage: 3.51,
+          tags: ['Social', 'Tech', 'FANGMA']
         },
         {
           ticker: 'NVDA',
@@ -36,7 +37,8 @@ function App() {
           name: 'NVIDIA Corporation',
           current_price: 516.71,
           price_down: 20.70,
-          price_down_percentage: 3.85
+          price_down_percentage: 3.85,
+          tags: ['Hardware']
         },
         {
           ticker: 'AMC',
@@ -44,7 +46,8 @@ function App() {
           name: 'AMC Entertainment',
           current_price: 19.90,
           price_up: 14.94,
-          price_up_percentage: 301.21
+          price_up_percentage: 301.21,
+          tags: ['Entertainment']
         }
       ]
     },
@@ -58,7 +61,8 @@ function App() {
           name: 'Tesla',
           current_price: 864.16,
           price_down: 18.93,
-          price_down_percentage: 2.14
+          price_down_percentage: 2.14,
+          tags: ['EV', 'Tech']
         },
         {
           ticker: 'MSFT',
@@ -66,7 +70,8 @@ function App() {
           name: 'Microsoft Corporation',
           current_price: 232.90,
           price_up: 0.57,
-          price_up_percentage: 0.25
+          price_up_percentage: 0.25,
+          tags: ['Software', 'FANGMA']
         }
       ]
     }
