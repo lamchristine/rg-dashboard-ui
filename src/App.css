@@ -62,3 +62,8 @@
 .Text-align-center {
   text-align: center;
 }
+
+
+.Label-wrapper {
+  width: 50px;
+}

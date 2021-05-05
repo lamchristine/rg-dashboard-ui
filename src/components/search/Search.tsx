@@ -3,7 +3,7 @@ import { Input } from 'semantic-ui-react';
 
 import './Search.css';
 
-export function Search(): React.ReactElement {
+export const Search = (): React.ReactElement => {
 
   function handleSubmit() {
     console.log('submit')

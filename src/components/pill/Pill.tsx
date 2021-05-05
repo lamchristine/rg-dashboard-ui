@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react';
 
 import './Pill.css'
 
-export function Pill(props: any): React.ReactElement {
+export const Pill = (props: any): React.ReactElement => {
 
   return (
     <>

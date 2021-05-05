@@ -2,6 +2,7 @@ import * as React from 'react';
 
 // import { DataTable } from './components/dataTable/DataTable';
 import { Header } from './components/header/Header';
+import { Footer } from './components/footer/Footer';
 // import { Search } from './components/search/Search';
 import { Subheader } from './components/subheader/Subheader';
 import { Watchlist } from './components/watchlist/Watchlist';
@@ -13,8 +14,7 @@ import { Watchlist } from './components/watchlist/Watchlist';
 
 import './App.css';
 
-function App() {
-
+export const App = () => {
 
   // const stockData = MOST_ACTIVE;
   const watchlists = [
@@ -85,8 +85,7 @@ function App() {
       <div className="Container-wrapper">
         <Watchlist list={watchlist}></Watchlist>
       </div>
+      <Footer></Footer>
     </>
   );
 }
-
-export default App;

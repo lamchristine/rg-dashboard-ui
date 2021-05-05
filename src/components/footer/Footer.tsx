@@ -4,7 +4,16 @@ import { Card } from '../card/Card';
 import { Header } from 'semantic-ui-react';
 import './Footer.css';
 
-export function Footer(): React.ReactElement {
+import { MOST_ACTIVE } from '../../seed/mostActive.constant';
+
+export const Footer = (): React.ReactElement => {
+  const tickerData = MOST_ACTIVE;
+  const cards = tickerData.map((stock: any) =>
+    <Card
+      key={stock.ticker}
+      stockData={stock}
+    ></Card>
+  );
 
   return (
     <>
@@ -14,7 +23,9 @@ export function Footer(): React.ReactElement {
           content='Discover more'
           subheader='You may be interested in'
         />
-        <Card></Card>
+        <div className="Card-wrapper">
+          {cards}
+        </div>
       </div>
     </>
   )

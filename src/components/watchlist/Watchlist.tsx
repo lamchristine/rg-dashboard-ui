@@ -5,7 +5,7 @@ import { FilterBar } from '../filterBar/FilterBar';
 
 import { Button, Header, Icon } from 'semantic-ui-react';
 
-export function Watchlist(props: any): React.ReactElement {
+export const Watchlist = (props: any): React.ReactElement => {
 
 const watchlistTags: any[] = [];
 

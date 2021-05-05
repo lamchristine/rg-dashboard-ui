@@ -2,3 +2,9 @@
   padding: 50px 150px;
   background: #f8f9fa;
 }
+
+.Card-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}

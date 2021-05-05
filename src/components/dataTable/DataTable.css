@@ -6,7 +6,7 @@
   color: #a50e0e;
 }
 
-.Grid-text--green-background {
+/* .Grid-text--green-background {
   font-weight: bold;
   background: #e6f4ea;
   width: fit-content;
@@ -20,7 +20,7 @@
   width: fit-content;
   padding: 5px 10px;
   border-radius: 8px;
-}
+} */
 
 td.Right-align {
   display: flex;

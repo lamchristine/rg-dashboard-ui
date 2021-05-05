@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Label, Icon, Table } from 'semantic-ui-react';
+import { PercentageLabel } from '../percentageLabel/PercentageLabel';
 import './DataTable.css';
 
-export function DataTable(props: any): React.ReactElement {
+export const DataTable = (props: any): React.ReactElement => {
   const downArrow = <Icon name="arrow down" />
   const upArrow = <Icon name="arrow up" />
 
@@ -10,6 +11,7 @@ export function DataTable(props: any): React.ReactElement {
     <Table.Row key={stock.ticker}>
       {/* Ticker label */}
       <Table.Cell className="Ticker-label" width="1">
+      <div className="Label-wrapper">
         <Label
           horizontal
           size="small"
@@ -17,6 +19,7 @@ export function DataTable(props: any): React.ReactElement {
         >
           {stock.ticker}
         </Label>
+        </div>
       </Table.Cell>
 
       {/* Ticker name */}
@@ -39,13 +42,13 @@ export function DataTable(props: any): React.ReactElement {
       </Table.Cell>
 
       {/* Price gain/lose in percentage */}
-      <Table.Cell
-        className={stock.price_up ? 'Grid-text--green Right-align' : 'Grid-text--red Right-align'}
-      >
-        <div className={stock.price_up_percentage ? 'Grid-text--green-background' : 'Grid-text--red-background'}>
-          {stock.price_up ? upArrow : downArrow}
-          {stock.price_up ? stock.price_up_percentage : stock.price_down_percentage}%
-        </div>
+      <Table.Cell className="Right-align">
+        <PercentageLabel
+          price_up={stock.price_up}
+          price_up_percentage={stock.price_up_percentage}
+          price_down={stock.price_down}
+          price_down_percentage={stock.price_down_percentage}
+        ></PercentageLabel>
       </Table.Cell>
 
       {/* Remove from watchlist icon */}

@@ -4,7 +4,7 @@ import { Pill } from '../pill/Pill';
 
 import './FilterBar.css';
 
-export function FilterBar(props: any): React.ReactElement {
+export const FilterBar = (props: any): React.ReactElement => {
   return (
     <>
       {props.filters.map((filter: any) => (

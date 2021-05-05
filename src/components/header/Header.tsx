@@ -5,7 +5,7 @@ import logo from '../../logo.svg';
 
 import './Header.css';
 
-export function Header(): React.ReactElement {
+export const Header = (): React.ReactElement => {
   return (
     <>
       <div className="App-header">
