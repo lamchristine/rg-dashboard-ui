@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# RG Dashboard - Keep track of your stocks by creating custom watchlists
+
+This project is a minimal implementation of a stock tracker app that is based off of the design of Google Finance. Built using React, this app features the ability to create custom watchlists. 
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
