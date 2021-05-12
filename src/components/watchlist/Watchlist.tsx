@@ -8,7 +8,7 @@ import { Button, Header, Icon } from 'semantic-ui-react';
 export const Watchlist = (props: any): React.ReactElement => {
 
   const watchlistTags: any[] = [];
-  props.list?.stocks.map((stock: any) => {
+  props.list?.stocks?.map((stock: any) => {
     return stock.tags.map((tag: any) => {
       if (watchlistTags.indexOf(tag) === -1) {
         return watchlistTags.push(tag);
@@ -37,7 +37,7 @@ export const Watchlist = (props: any): React.ReactElement => {
 
   return (
     <>
-      {props.list ? activeState : zeroState }
+      {props.list?.stocks ? activeState : zeroState }
     </>
   )
 }
