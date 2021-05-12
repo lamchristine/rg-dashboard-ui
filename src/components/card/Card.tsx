@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Label } from 'semantic-ui-react';
 import { PercentageLabel } from '../percentageLabel/PercentageLabel';
 
-import './Card.css';
+import './Card.scss';
 
 export const Card = (props: any): React.ReactElement => {
 

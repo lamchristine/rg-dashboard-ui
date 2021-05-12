@@ -3,7 +3,7 @@ import { Avatar } from '../avatar/Avatar';
 import { Search } from '../search/Search';
 import logo from '../../logo.svg';
 
-import './Header.css';
+import './Header.scss';
 
 export const Header = (): React.ReactElement => {
   return (

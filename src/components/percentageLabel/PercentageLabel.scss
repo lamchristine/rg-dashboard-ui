@@ -1,0 +1,21 @@
+.Label {
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+
+  &--green {
+    background: #e6f4ea;
+    color: #137333;
+  }
+
+  &--red {
+    background: #fce8e6;
+    color: #a50e0e;
+  }
+
+  &--grey {
+    background-color: #ececec;
+    color: #545454;
+  }
+}

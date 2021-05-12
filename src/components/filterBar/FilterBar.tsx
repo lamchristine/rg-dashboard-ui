@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Pill } from '../pill/Pill';
 
-import './FilterBar.css';
+import './FilterBar.scss';
 
 export const FilterBar = (props: any): React.ReactElement => {
   return (

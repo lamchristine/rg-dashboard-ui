@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { Button, Header, Icon } from 'semantic-ui-react';
 
-import './Subheader.css';
+import './Subheader.scss';
 
 export const Subheader = (props: any): React.ReactElement => {
   const [watchlistBtns, setWatchlistBtns] = useState();

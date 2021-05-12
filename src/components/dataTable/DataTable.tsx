@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Label, Icon, Table } from 'semantic-ui-react';
 import { PercentageLabel } from '../percentageLabel/PercentageLabel';
-import './DataTable.css';
+import './DataTable.scss';
 
 export const DataTable = (props: any): React.ReactElement => {
 
@@ -68,8 +68,8 @@ export const DataTable = (props: any): React.ReactElement => {
       </Table.Cell>
 
       {/* Remove from watchlist icon */}
-      <Table.Cell textAlign="center" width="2" >
-        <Icon circular name="close" />
+      <Table.Cell textAlign="center" width="2">
+        <Icon className="Remove-icon" circular name="close" />
       </Table.Cell>
     </Table.Row>
   )

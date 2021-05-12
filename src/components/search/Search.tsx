@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Input } from 'semantic-ui-react';
 
-import './Search.css';
+import './Search.scss';
 
 export const Search = (): React.ReactElement => {
 

@@ -53,6 +53,24 @@ table {
   text-align: left !important;
 }
 
+i.circular.icon {
+  box-shadow: none;
+  color: #80868b;
+}
+
 .ui.selectable.table tbody tr:hover {
   background: #f8f9fa !important;
+
+  .Remove-icon {
+    visibility: visible;
+  }
+}
+
+.Remove-icon {
+  visibility: hidden;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(34, 36, 38, 0.1) 0px 0px 0px 1px !important;
+  }
 }

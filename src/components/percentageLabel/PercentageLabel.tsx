@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Icon } from 'semantic-ui-react';
-import './PercentageLabel.css';
+import './PercentageLabel.scss';
 
 export const PercentageLabel = (props: any): React.ReactElement => {
   const { percent_delta } = props;
@@ -13,17 +13,17 @@ export const PercentageLabel = (props: any): React.ReactElement => {
   switch(true) {
     case percent_delta === 0:
       percent_delta_display = '0%';
-      percent_delta_className = 'Label--grey'
+      percent_delta_className = 'Label Label--grey'
       break;
     case percent_delta > 0:
       percent_delta_icon = upArrow;
       percent_delta_display = (percent_delta * 100).toFixed(2) + '%';
-      percent_delta_className = 'Label--green'
+      percent_delta_className = 'Label Label--green'
       break;
     case percent_delta < 0:
       percent_delta_icon = downArrow;
       percent_delta_display = (percent_delta * 100).toFixed(2).toString().slice(1) + '%';
-      percent_delta_className = 'Label--red'
+      percent_delta_className = 'Label Label--red'
       break;
   }
 

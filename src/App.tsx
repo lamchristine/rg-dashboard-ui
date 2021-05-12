@@ -6,7 +6,7 @@ import { Footer } from './components/footer/Footer';
 import { Subheader } from './components/subheader/Subheader';
 import { Watchlist } from './components/watchlist/Watchlist';
 
-import './App.css';
+import './App.scss';
 
 export const App = () => {
   const [watchlist, setWatchlist] = useState();
