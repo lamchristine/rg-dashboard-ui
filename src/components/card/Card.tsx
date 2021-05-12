@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { Label, Icon, Table } from 'semantic-ui-react';
+import { Label } from 'semantic-ui-react';
 import { PercentageLabel } from '../percentageLabel/PercentageLabel';
 
 import './Card.css';
 
 export const Card = (props: any): React.ReactElement => {
 
-  const {current_price, name, ticker, ticker_color, price_up_percentage, price_up, price_down_percentage, price_down} = props.stockData;
+  const {current_price, name, ticker, ticker_color, delta} = props.stockData;
 
   return (
     <>
@@ -25,10 +25,7 @@ export const Card = (props: any): React.ReactElement => {
         <div className="Card-Footer">
           <div className="margin-b-sm bold">${current_price}</div>
           <PercentageLabel
-            price_up={price_up}
-            price_up_percentage={price_up_percentage}
-            price_down={price_down}
-            price_down_percentage={price_down_percentage}
+            percent_delta={delta}
           ></PercentageLabel>
         </div>
       </div>

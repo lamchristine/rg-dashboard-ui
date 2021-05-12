@@ -7,11 +7,12 @@ import { Button, Header, Icon } from 'semantic-ui-react';
 
 export const Watchlist = (props: any): React.ReactElement => {
 
-const watchlistTags: any[] = [];
-
-  props.list.stocks.map((stock: any) => {
-    stock.tags.map((tag: any) => {
-      watchlistTags.push(tag)
+  const watchlistTags: any[] = [];
+  props.list?.stocks.map((stock: any) => {
+    return stock.tags.map((tag: any) => {
+      if (watchlistTags.indexOf(tag) === -1) {
+        return watchlistTags.push(tag);
+      }
     })
   })
 
@@ -28,15 +29,15 @@ const watchlistTags: any[] = [];
 
   const activeState = (
     <>
-      <Header as="h4">{props.list.name}</Header>
+      <Header as="h4">{props.list?.name}</Header>
       <FilterBar filters={watchlistTags}></FilterBar>
-      <DataTable data={props.list.stocks}></DataTable>
+      <DataTable data={props.list?.stocks}></DataTable>
     </>
   )
 
   return (
     <>
-      { props.list ? activeState : zeroState }
+      {props.list ? activeState : zeroState }
     </>
   )
 }

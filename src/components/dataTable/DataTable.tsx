@@ -4,10 +4,29 @@ import { PercentageLabel } from '../percentageLabel/PercentageLabel';
 import './DataTable.css';
 
 export const DataTable = (props: any): React.ReactElement => {
-  const downArrow = <Icon name="arrow down" />
-  const upArrow = <Icon name="arrow up" />
 
-  const gridRows = props.data.map((stock: any) =>
+  const gridRows = props.data.map((stock: any) => {
+
+  let price_delta = parseFloat((stock.open_price * stock.delta).toFixed(2));
+  let price_delta_display;
+  let price_delta_className;
+
+  switch(true) {
+    case price_delta === 0:
+      price_delta_display = '-';
+      price_delta_className = 'Grid-text--grey'
+      break;
+    case price_delta > 0:
+      price_delta_display = '+$' + price_delta;
+      price_delta_className = 'Grid-text--green'
+      break;
+    case price_delta < 0:
+      price_delta_display = '-$' + price_delta.toString().slice(1);
+      price_delta_className = 'Grid-text--red'
+      break;
+  }
+
+  return (
     <Table.Row key={stock.ticker}>
       {/* Ticker label */}
       <Table.Cell className="Ticker-label" width="1">
@@ -24,7 +43,7 @@ export const DataTable = (props: any): React.ReactElement => {
 
       {/* Ticker name */}
       <Table.Cell>
-        {stock.name}
+        {stock.company_name}
       </Table.Cell>
 
       {/* Current price */}
@@ -34,20 +53,17 @@ export const DataTable = (props: any): React.ReactElement => {
 
       {/* Price gain/lose */}
       <Table.Cell
-        className={stock.price_up ? 'Grid-text--green' : 'Grid-text--red'}
+        className={price_delta_className}
         textAlign="right"
-        width="2"
+        width="3"
       >
-        ${stock.price_up ? stock.price_up : stock.price_down}
+        {price_delta_display}
       </Table.Cell>
 
       {/* Price gain/lose in percentage */}
       <Table.Cell className="Right-align">
         <PercentageLabel
-          price_up={stock.price_up}
-          price_up_percentage={stock.price_up_percentage}
-          price_down={stock.price_down}
-          price_down_percentage={stock.price_down_percentage}
+          percent_delta={stock.delta}
         ></PercentageLabel>
       </Table.Cell>
 
@@ -56,7 +72,8 @@ export const DataTable = (props: any): React.ReactElement => {
         <Icon circular name="close" />
       </Table.Cell>
     </Table.Row>
-  );
+  )
+});
 
   return (
     <>

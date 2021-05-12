@@ -15,3 +15,12 @@
   border-radius: 8px;
   color: #a50e0e;
 }
+
+.Label--grey {
+  font-weight: bold;
+  background-color: #ececec;
+  color: #545454;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
