@@ -44,7 +44,7 @@ export const Subheader = ({onSelectWatchlist} : {onSelectWatchlist: any}): React
       const newWatchList = { name: inputValue, uid: inputValue }
       let newArr = [...watchlists, newWatchList]
       setWatchlists(newArr);
-      onSelectWatchlist(newArr);
+      onSelectWatchlist(newWatchList);
     }
   }
 

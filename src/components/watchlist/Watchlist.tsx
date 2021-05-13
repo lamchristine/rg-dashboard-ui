@@ -6,7 +6,7 @@ import { FilterBar } from '../filterBar/FilterBar';
 import { Button, Header, Icon } from 'semantic-ui-react';
 
 export const Watchlist = (props: any): React.ReactElement => {
-
+console.log(props)
   const watchlistTags: any[] = [];
   props.list?.stocks?.map((stock: any) => {
     return stock.tags.map((tag: any) => {
@@ -29,7 +29,6 @@ export const Watchlist = (props: any): React.ReactElement => {
 
   const activeState = (
     <>
-      <Header as="h4">{props.list?.name}</Header>
       <FilterBar filters={watchlistTags}></FilterBar>
       <DataTable data={props.list?.stocks}></DataTable>
     </>
@@ -37,6 +36,7 @@ export const Watchlist = (props: any): React.ReactElement => {
 
   return (
     <>
+      <Header as="h4">{props.list?.name}</Header>
       {props.list?.stocks ? activeState : zeroState }
     </>
   )
