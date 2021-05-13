@@ -4,47 +4,18 @@ import { Button, Header, Icon, Modal, Input } from 'semantic-ui-react';
 
 import './Subheader.scss';
 
-export const Subheader = ({onSelectWatchlist} : {onSelectWatchlist: any}): React.ReactElement => {
+export const Subheader = (props: any): React.ReactElement => {
   const [watchlists, setWatchlists] = useState<any[]>();
-
-  // let watchlistBtnArr: any[];
-
-  useEffect(() => {
-    let loading = true;
-    const apiUrl = 'https://rg-dashboard-api.herokuapp.com/api/v1/watchlists';
-
-    axios.get(apiUrl)
-      .then((response) => {
-        if (loading) {
-          const watchlists = response.data.watchlists;
-
-          const watchlistBtns = watchlists.map((list: any) =>
-            <Button key={list.uid} onClick={() => onSelectWatchlist(list)}>
-              <Icon name="list alternate"></Icon>{list.name}
-            </Button>
-          );
-          setWatchlists(watchlists);
-
-          onSelectWatchlist(watchlists[0])
-        }
-      })
-      .catch((err) => {
-        console.log(err.response)
-      })
-      return () => {
-        loading = false;
-    }
-  }, [])
-
   const [open, setOpen] = useState(false)
 
-
   const onCreateWatchlist = () => {
-    if (watchlists) {
-      const newWatchList = { name: inputValue, uid: inputValue, stocks: [] }
-      let newArr = [...watchlists, newWatchList]
-      setWatchlists(newArr);
-      onSelectWatchlist(newWatchList);
+    if (props.watchlists) {
+      const newWatchList = { uid: inputValue, name: inputValue, stocks: [] }
+      let newArr = [...props.watchlists, newWatchList]
+      console.log(newArr)
+      props.watchlists.push(newWatchList);
+      setWatchlists(newArr)
+      props.onSelectWatchlist(newWatchList);
     }
   }
 
@@ -55,8 +26,8 @@ export const Subheader = ({onSelectWatchlist} : {onSelectWatchlist: any}): React
       <div className="Subheader">
         <Header as="h6">YOUR WATCHLISTS</Header>
         <div>
-          {watchlists?.map((list: any) => (
-            <Button key={list.uid} onClick={() => onSelectWatchlist(list)}>
+          {props.watchlists?.map((list: any) => (
+            <Button key={list.uid} onClick={() => props.onSelectWatchlist(list)}>
               <Icon name="list alternate"></Icon>{list.name}
             </Button>
           ))

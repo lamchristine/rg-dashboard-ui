@@ -8,15 +8,48 @@ import { Watchlist } from './components/watchlist/Watchlist';
 
 import './App.scss';
 
-export const App = () => {
-  const [watchlist, setWatchlist] = useState();
+export const App = (props:any) => {
+  const [watchlists, setWatchlists] = useState<any[]>();
+  const [watchlist, setWatchlist] = useState<any[]>();
+
+  useEffect(() => {
+    let loading = true;
+    const apiUrl = 'https://rg-dashboard-api.herokuapp.com/api/v1/watchlists';
+
+    axios.get(apiUrl)
+      .then((response) => {
+        if (loading) {
+          const watchlists = response.data.watchlists;
+          console.log(watchlists)
+
+          setWatchlists(watchlists);
+          setWatchlist(watchlists[0])
+        }
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+      return () => {
+        loading = false;
+    }
+  }, [])
+
+  const deleteWatchlist = (list: any) => {
+    const newWatchlistArr = watchlists?.filter((watchlist) => watchlist !== list);
+    setWatchlists(newWatchlistArr);
+    if(newWatchlistArr) {
+      setWatchlist(newWatchlistArr[0]);
+    } else {
+      setWatchlist([]);
+    }
+  }
 
   return (
     <>
       <Header></Header>
-      <Subheader onSelectWatchlist={setWatchlist}></Subheader>
+      <Subheader watchlists={watchlists} onSelectWatchlist={setWatchlist}></Subheader>
       <div className="Container-wrapper">
-        <Watchlist list={watchlist}></Watchlist>
+        <Watchlist list={watchlist} onDeleteWatchlist={(list: any) => deleteWatchlist(list)}></Watchlist>
       </div>
       <Footer></Footer>
     </>

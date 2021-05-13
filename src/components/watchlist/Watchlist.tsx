@@ -47,18 +47,7 @@ console.log(props)
     }
   ]
   const [renameWatchlist, setRenameWatchlist] = useState<Boolean>(false);
-
-  // useEffect(() => {
-  //     console.log(renameWatchlist)
-  //   if (renameWatchlist) {
-  //
-  //   }
-  // },[renameWatchlist]
-  // );
-
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
-
-
 
   return (
     <>
@@ -87,7 +76,7 @@ console.log(props)
       >
         <Modal.Content>
           <Modal.Description>
-            <h3>Delete this watchlist?</h3>
+            <h3>Delete {props.list?.name} watchlist?</h3>
             <p>This list containing {props.list?.stocks.length} investments will be deleted.</p>
           </Modal.Description>
         </Modal.Content>
@@ -97,6 +86,7 @@ console.log(props)
           </Button>
           <Button primary onClick={() => {
               setOpenDeleteModal(false);
+              props.onDeleteWatchlist(props.list);
             }}
           >
             Done
