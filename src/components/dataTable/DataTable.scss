@@ -1,31 +1,16 @@
-.Grid-text--green {
+.grid-text--green {
   color: #137333;
 }
 
-.Grid-text--red {
+.grid-text--red {
   color: #a50e0e;
 }
 
-.Grid-text--grey {
+.grid-text--grey {
   color: #616161;
 }
-/* .Grid-text--green-background {
-  font-weight: bold;
-  background: #e6f4ea;
-  width: fit-content;
-  padding: 5px 10px;
-  border-radius: 8px;
-}
 
-.Grid-text--red-background {
-  font-weight: bold;
-  background: #fce8e6;
-  width: fit-content;
-  padding: 5px 10px;
-  border-radius: 8px;
-} */
-
-td.Right-align {
+td.right-align {
   display: flex;
   justify-content: flex-end;
 }
@@ -35,7 +20,7 @@ td.Right-align {
   width: 100% !important;
 }
 
-td.one.wide.Ticker-label {
+td.one.wide.ticker-label {
   padding-right: 0px !important;
 }
 
@@ -43,14 +28,6 @@ table {
   border-radius: 0 !important;
   border-top: 1px solid rgba(34,36,38,.1) !important;
   border-bottom: 1px solid rgba(34,36,38,.1) !important;
-}
-
-.ui.label.taco {
-  width: fit-content !important;
-  background: white !important;
-  color: rgba(0,0,0,.87) !important;
-  border: 1px solid rgba(34,36,38,.15) !important;
-  text-align: left !important;
 }
 
 i.circular.icon {
@@ -61,12 +38,12 @@ i.circular.icon {
 .ui.selectable.table tbody tr:hover {
   background: #f8f9fa !important;
 
-  .Remove-icon {
+  .remove-icon {
     visibility: visible;
   }
 }
 
-.Remove-icon {
+.remove-icon {
   visibility: hidden;
 
   &:hover {

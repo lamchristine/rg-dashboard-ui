@@ -4,76 +4,74 @@ import { PercentageLabel } from '../percentageLabel/PercentageLabel';
 import './DataTable.scss';
 
 export const DataTable = (props: any): React.ReactElement => {
-
   const gridRows = props.data.map((stock: any) => {
+    let price_delta = parseFloat((stock.open_price * stock.delta).toFixed(2));
+    let price_delta_display;
+    let price_delta_className;
 
-  let price_delta = parseFloat((stock.open_price * stock.delta).toFixed(2));
-  let price_delta_display;
-  let price_delta_className;
+    switch(true) {
+      case price_delta === 0:
+        price_delta_display = '-';
+        price_delta_className = 'grid-text--grey'
+        break;
+      case price_delta > 0:
+        price_delta_display = '+$' + price_delta;
+        price_delta_className = 'grid-text--green'
+        break;
+      case price_delta < 0:
+        price_delta_display = '-$' + price_delta.toString().slice(1);
+        price_delta_className = 'grid-text--red'
+        break;
+    }
 
-  switch(true) {
-    case price_delta === 0:
-      price_delta_display = '-';
-      price_delta_className = 'Grid-text--grey'
-      break;
-    case price_delta > 0:
-      price_delta_display = '+$' + price_delta;
-      price_delta_className = 'Grid-text--green'
-      break;
-    case price_delta < 0:
-      price_delta_display = '-$' + price_delta.toString().slice(1);
-      price_delta_className = 'Grid-text--red'
-      break;
-  }
+    return (
+      <Table.Row key={stock.ticker}>
+        {/* Ticker label */}
+        <Table.Cell className="ticker-label" width="1">
+        <div className="label-wrapper">
+          <Label
+            horizontal
+            size="small"
+            style={{background: stock.ticker_color}}
+          >
+            {stock.ticker}
+          </Label>
+          </div>
+        </Table.Cell>
 
-  return (
-    <Table.Row key={stock.ticker}>
-      {/* Ticker label */}
-      <Table.Cell className="Ticker-label" width="1">
-      <div className="Label-wrapper">
-        <Label
-          horizontal
-          size="small"
-          style={{background: stock.ticker_color}}
+        {/* Ticker name */}
+        <Table.Cell>
+          {stock.company_name}
+        </Table.Cell>
+
+        {/* Current price */}
+        <Table.Cell textAlign="right">
+          ${stock.current_price}
+        </Table.Cell>
+
+        {/* Price gain/lose */}
+        <Table.Cell
+          className={price_delta_className}
+          textAlign="right"
+          width="3"
         >
-          {stock.ticker}
-        </Label>
-        </div>
-      </Table.Cell>
+          {price_delta_display}
+        </Table.Cell>
 
-      {/* Ticker name */}
-      <Table.Cell>
-        {stock.company_name}
-      </Table.Cell>
+        {/* Price gain/lose in percentage */}
+        <Table.Cell className="right-align">
+          <PercentageLabel
+            percent_delta={stock.delta}
+          ></PercentageLabel>
+        </Table.Cell>
 
-      {/* Current price */}
-      <Table.Cell textAlign="right">
-        ${stock.current_price}
-      </Table.Cell>
-
-      {/* Price gain/lose */}
-      <Table.Cell
-        className={price_delta_className}
-        textAlign="right"
-        width="3"
-      >
-        {price_delta_display}
-      </Table.Cell>
-
-      {/* Price gain/lose in percentage */}
-      <Table.Cell className="Right-align">
-        <PercentageLabel
-          percent_delta={stock.delta}
-        ></PercentageLabel>
-      </Table.Cell>
-
-      {/* Remove from watchlist icon */}
-      <Table.Cell textAlign="center" width="2">
-        <Icon className="Remove-icon" circular name="close" />
-      </Table.Cell>
-    </Table.Row>
-  )
-});
+        {/* Remove from watchlist icon */}
+        <Table.Cell textAlign="center" width="2">
+          <Icon className="remove-icon" circular name="close" />
+        </Table.Cell>
+      </Table.Row>
+    )
+  });
 
   return (
     <>
@@ -83,6 +81,6 @@ export const DataTable = (props: any): React.ReactElement => {
         {gridRows}
        </Table.Body>
      </Table>
-   </>
- );
+    </>
+  );
 }

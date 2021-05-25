@@ -20,14 +20,13 @@ export const App = (props:any) => {
       .then((response) => {
         if (loading) {
           const watchlists = response.data.watchlists;
-          console.log(watchlists)
 
           setWatchlists(watchlists);
-          setWatchlist(watchlists[0])
+          setWatchlist(watchlists[0]);
         }
       })
       .catch((err) => {
-        console.log(err.response)
+        console.log(err.response);
       })
       return () => {
         loading = false;
@@ -37,7 +36,9 @@ export const App = (props:any) => {
   const deleteWatchlist = (list: any) => {
     const newWatchlistArr = watchlists?.filter((watchlist) => watchlist !== list);
     setWatchlists(newWatchlistArr);
-    if(newWatchlistArr) {
+
+    // select the first watchlist if there is one, after deleting a watchlist
+    if (newWatchlistArr) {
       setWatchlist(newWatchlistArr[0]);
     } else {
       setWatchlist([]);
@@ -48,7 +49,7 @@ export const App = (props:any) => {
     <>
       <Header></Header>
       <Subheader watchlists={watchlists} onSelectWatchlist={setWatchlist}></Subheader>
-      <div className="Container-wrapper">
+      <div className="container-wrapper">
         <Watchlist list={watchlist} onDeleteWatchlist={(list: any) => deleteWatchlist(list)}></Watchlist>
       </div>
       <Footer></Footer>

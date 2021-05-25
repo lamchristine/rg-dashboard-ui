@@ -17,16 +17,16 @@ export const Footer = (): React.ReactElement => {
 
   return (
     <>
-      <div className="Footer">
+      <div className="footer">
         <Header
           as="h4"
           content='Discover more'
           subheader='You may be interested in'
         />
-        <div className="Card-wrapper">
+        <div className="card-wrapper">
           {cards}
         </div>
       </div>
     </>
-  )
+  );
 }

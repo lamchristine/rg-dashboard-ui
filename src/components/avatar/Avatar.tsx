@@ -3,6 +3,6 @@ import './Avatar.css';
 
 export function Avatar(): React.ReactElement {
   return (
-    <div className="Avatar">CL</div>
-  )
+    <div className="avatar">CL</div>
+  );
 }

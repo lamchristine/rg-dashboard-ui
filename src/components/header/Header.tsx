@@ -8,8 +8,8 @@ import './Header.scss';
 export const Header = (): React.ReactElement => {
   return (
     <>
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <div className="app-header">
+        <img src={logo} className="app-logo" alt="logo" />
         <Search></Search>
         <Avatar></Avatar>
       </div>

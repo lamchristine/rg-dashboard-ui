@@ -6,13 +6,12 @@ import { PercentageLabel } from '../percentageLabel/PercentageLabel';
 import './Card.scss';
 
 export const Card = (props: any): React.ReactElement => {
-
   const {current_price, name, ticker, ticker_color, delta} = props.stockData;
 
   return (
     <>
-      <div className="Card">
-        <div className="Label-wrapper">
+      <div className="card">
+        <div className="label-wrapper">
           <Label
             horizontal
             size="small"
@@ -22,7 +21,7 @@ export const Card = (props: any): React.ReactElement => {
           </Label>
         </div>
         {name}
-        <div className="Card-Footer">
+        <div className="card-footer">
           <div className="margin-b-sm bold">${current_price}</div>
           <PercentageLabel
             percent_delta={delta}
@@ -30,5 +29,5 @@ export const Card = (props: any): React.ReactElement => {
         </div>
       </div>
     </>
-  )
-};
+  );
+}

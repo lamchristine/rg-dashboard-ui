@@ -11,5 +11,5 @@ export const FilterBar = (props: any): React.ReactElement => {
         <Pill key={filter} value={filter}></Pill>
       ))}
     </>
-  )
-};
+  );
+}

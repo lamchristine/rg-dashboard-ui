@@ -4,7 +4,6 @@ import { Input } from 'semantic-ui-react';
 import './Search.scss';
 
 export const Search = (): React.ReactElement => {
-
   function handleSubmit() {
     console.log('submit')
   };

@@ -1,23 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import { DataTable } from '../dataTable/DataTable';
 import { FilterBar } from '../filterBar/FilterBar';
 
-import { Button, Header, Icon, Dropdown, Menu, Modal } from 'semantic-ui-react';
+import { Button, Dropdown, Header, Icon, Modal } from 'semantic-ui-react';
 
 export const Watchlist = (props: any): React.ReactElement => {
-console.log(props)
   const watchlistTags: any[] = [];
-  props.list?.stocks.map((stock: any) => {
-    return stock.tags.map((tag: any) => {
+
+  // aggregate array of unique tags for watchlist
+  props.list?.stocks.forEach((stock: any) => {
+    return stock.tags.forEach((tag: any) => {
       if (watchlistTags.indexOf(tag) === -1) {
         return watchlistTags.push(tag);
       }
     })
   })
 
+  // Zero state view (no investments in watchlist)
   const zeroState = (
-    <div className="Text-align-center">
+    <div className="text-align-center">
       <Icon name="chart line" size="massive"></Icon>
       <h4>Nothing in this watchlist yet</h4>
       <Button>
@@ -25,40 +27,30 @@ console.log(props)
         Add Investments
       </Button>
     </div>
-  )
+  );
 
+  // Active state view (has investments in watchlist)
   const activeState = (
     <>
       <FilterBar filters={watchlistTags}></FilterBar>
       <DataTable data={props.list?.stocks}></DataTable>
     </>
-  )
+  );
 
-  const editWatchlistOptions = [
-    {
-      key: 'rename',
-      text: 'Rename',
-      value: 'rename'
-    },
-    {
-      key: 'delete',
-      text: 'Delete',
-      value: 'delete'
-    }
-  ]
+  // TODO: rename watchlist feature
   const [renameWatchlist, setRenameWatchlist] = useState<Boolean>(false);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false)
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   return (
     <>
-      <div className="Display-flex">
+      <div className="display-flex">
         <Header as="h4">{props.list?.name}</Header>
           <Dropdown
-            icon='ellipsis vertical'
-            floating
             button
+            floating
             className='icon'
             direction='right'
+            icon='ellipsis vertical'
           >
           <Dropdown.Menu>
             <Dropdown.Item icon='pencil alternate' text='Rename' onClick={() => setRenameWatchlist(true)}/>
@@ -66,8 +58,10 @@ console.log(props)
           </Dropdown.Menu>
         </Dropdown>
       </div>
+
       {props.list?.stocks.length > 0 ? activeState : zeroState}
 
+      {/* Delete Watchlist Modal */}
       <Modal
         onClose={() => setOpenDeleteModal(false)}
         onOpen={() => setOpenDeleteModal(true)}
@@ -94,5 +88,5 @@ console.log(props)
         </Modal.Actions>
       </Modal>
     </>
-  )
+  );
 }

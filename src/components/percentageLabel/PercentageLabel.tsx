@@ -13,17 +13,17 @@ export const PercentageLabel = (props: any): React.ReactElement => {
   switch(true) {
     case percent_delta === 0:
       percent_delta_display = '0%';
-      percent_delta_className = 'Label Label--grey'
+      percent_delta_className = 'label label--grey'
       break;
     case percent_delta > 0:
       percent_delta_icon = upArrow;
       percent_delta_display = (percent_delta * 100).toFixed(2) + '%';
-      percent_delta_className = 'Label Label--green'
+      percent_delta_className = 'label label--green'
       break;
     case percent_delta < 0:
       percent_delta_icon = downArrow;
       percent_delta_display = (percent_delta * 100).toFixed(2).toString().slice(1) + '%';
-      percent_delta_className = 'Label Label--red'
+      percent_delta_className = 'label label--red'
       break;
   }
 
@@ -34,5 +34,5 @@ export const PercentageLabel = (props: any): React.ReactElement => {
         {percent_delta_display}
       </div>
     </>
-  )
+  );
 }
