@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import { DataTable } from '../dataTable/DataTable';
 import { FilterBar } from '../filterBar/FilterBar';
@@ -6,16 +7,11 @@ import { FilterBar } from '../filterBar/FilterBar';
 import { Button, Dropdown, Header, Icon, Modal } from 'semantic-ui-react';
 
 export const Watchlist = (props: any): React.ReactElement => {
-  const watchlistTags: any[] = [];
-
-  // aggregate array of unique tags for watchlist
-  props.list?.stocks.forEach((stock: any) => {
-    return stock.tags.forEach((tag: any) => {
-      if (watchlistTags.indexOf(tag) === -1) {
-        return watchlistTags.push(tag);
-      }
-    })
-  })
+  const [stocks, setStocks] = useState<any[]>([]);
+  const [tags, setTags] = useState<any[]>([]);
+  // TODO: rename watchlist feature
+  const [renameWatchlist, setRenameWatchlist] = useState<Boolean>(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   // Zero state view (no investments in watchlist)
   const zeroState = (
@@ -32,14 +28,42 @@ export const Watchlist = (props: any): React.ReactElement => {
   // Active state view (has investments in watchlist)
   const activeState = (
     <>
-      <FilterBar filters={watchlistTags}></FilterBar>
-      <DataTable data={props.list?.stocks}></DataTable>
+      <FilterBar filters={tags}></FilterBar>
+      <DataTable data={stocks}></DataTable>
     </>
   );
 
-  // TODO: rename watchlist feature
-  const [renameWatchlist, setRenameWatchlist] = useState<Boolean>(false);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  // Get stocks for given watchlist
+  useEffect(() => {
+    if (props.list) {
+      const apiUrl = 'https://rg-dashboard-api.herokuapp.com/api/v1/watchlists/' + props.list?.uid;
+
+      axios.get(apiUrl)
+        .then((response) => {
+          const stocks = response.data.watchlist.stocks;
+          setStocks(stocks);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        })
+    } else {
+      setStocks([]);
+    }
+  }, [props.list])
+
+  // Aggregate tags for stocks
+  useEffect(() => {
+      const watchlistTags: any[] = [];
+
+      stocks.forEach((stock: any) => {
+        return stock.tags.forEach((tag: any) => {
+          if (watchlistTags.indexOf(tag) === -1) {
+            return watchlistTags.push(tag);
+          }
+        })
+      })
+      setTags(watchlistTags);
+  }, [stocks])
 
   return (
     <>
@@ -59,7 +83,7 @@ export const Watchlist = (props: any): React.ReactElement => {
         </Dropdown>
       </div>
 
-      {props.list?.stocks.length > 0 ? activeState : zeroState}
+      {stocks?.length > 0 ? activeState : zeroState}
 
       {/* Delete Watchlist Modal */}
       <Modal
@@ -71,7 +95,7 @@ export const Watchlist = (props: any): React.ReactElement => {
         <Modal.Content>
           <Modal.Description>
             <h3>Delete {props.list?.name} watchlist?</h3>
-            <p>This list containing {props.list?.stocks.length} investments will be deleted.</p>
+            <p>This list containing {stocks?.length} investments will be deleted.</p>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
