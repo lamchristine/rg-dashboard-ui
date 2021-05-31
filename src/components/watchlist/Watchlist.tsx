@@ -10,11 +10,11 @@ import { DataTable } from '../dataTable/DataTable';
 import { FilterBar } from '../filterBar/FilterBar';
 
 export const Watchlist = (props: any): React.ReactElement => {
-  const [stocks, setStocks] = useState<any[]>([]);
-  const [tags, setTags] = useState<any[]>([]);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   // TODO: rename watchlist feature
   const [renameWatchlist, setRenameWatchlist] = useState<Boolean>(false);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [stocks, setStocks] = useState<any[]>([]);
+  const [tags, setTags] = useState<any[]>([]);
 
   // Get stocks for given watchlist
   useEffect(() => {
@@ -57,7 +57,7 @@ export const Watchlist = (props: any): React.ReactElement => {
     </>
   );
 
-  // Delete stock
+  // Delete stock - TODO: DELETE request to delete a stock
   const deleteStock = (deletedStock: any) => {
     const updatedStocks = stocks?.filter((stock: any) => stock.ticker !== deletedStock.ticker);
     setStocks(updatedStocks);

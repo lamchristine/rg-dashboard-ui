@@ -1,5 +1,5 @@
 // React Dependencies
-import React, { useState } from 'react';
+import React from 'react';
 
 // Third Party Dependencies
 import { Button, Label, Icon, Table } from 'semantic-ui-react';
