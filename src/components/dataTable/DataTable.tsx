@@ -1,10 +1,16 @@
-import * as React from 'react';
-import { Label, Icon, Table } from 'semantic-ui-react';
+// React Dependencies
+import React, { useState } from 'react';
+
+// Third Party Dependencies
+import { Button, Label, Icon, Table } from 'semantic-ui-react';
 import { PercentageLabel } from '../percentageLabel/PercentageLabel';
+
+// Internal Dependencies
 import './DataTable.scss';
 
 export const DataTable = (props: any): React.ReactElement => {
-  const gridRows = props.data.map((stock: any) => {
+  // Build table rows
+  const tableRows = props.data?.map((stock: any) => {
     let price_delta = parseFloat((stock.open_price * stock.delta).toFixed(2));
     let price_delta_display;
     let price_delta_className;
@@ -12,17 +18,17 @@ export const DataTable = (props: any): React.ReactElement => {
     switch(true) {
       case price_delta === 0:
         price_delta_display = '-';
-        price_delta_className = 'grid-text--grey'
+        price_delta_className = 'grid-text--grey';
         break;
       case price_delta > 0:
         price_delta_display = '+$' + price_delta;
-        price_delta_className = 'grid-text--green'
+        price_delta_className = 'grid-text--green';
         break;
       case price_delta < 0:
         price_delta_display = '-$' + price_delta.toString().slice(1);
-        price_delta_className = 'grid-text--red'
+        price_delta_className = 'grid-text--red';
         break;
-    }
+    };
 
     return (
       <Table.Row key={stock.ticker}>
@@ -67,19 +73,28 @@ export const DataTable = (props: any): React.ReactElement => {
 
         {/* Remove from watchlist icon */}
         <Table.Cell textAlign="center" width="2">
-          <Icon className="remove-icon" circular name="close" />
+          <Button
+            basic
+            circular
+            icon
+            className="remove-icon"
+            size="small"
+            onClick={() => props.onDeleteStock(stock)}
+          >
+            <Icon name="close"/>
+          </Button>
         </Table.Cell>
       </Table.Row>
     )
-  });
+  })
 
   return (
     <>
       <h4>{props.title}</h4>
       <Table basic="very" singleLine selectable>
-       <Table.Body>
-        {gridRows}
-       </Table.Body>
+        <Table.Body>
+          {tableRows}
+        </Table.Body>
      </Table>
     </>
   );

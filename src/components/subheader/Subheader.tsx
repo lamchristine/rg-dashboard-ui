@@ -1,13 +1,18 @@
-import React, {useState} from 'react';
+// React Dependencies
+import React, { useState } from 'react';
+
+// Third Party Dependencies
 import { Button, Header, Icon, Input, Modal } from 'semantic-ui-react';
 
+// Internal Dependencies
 import './Subheader.scss';
 
 export const Subheader = (props: any): React.ReactElement => {
-  const [watchlists, setWatchlists] = useState<any[]>();
-  const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState<string>('');
+  const [open, setOpen] = useState(false);
+  const [watchlists, setWatchlists] = useState<any[]>();
 
+  // Create watchlist
   const onCreateWatchlist = () => {
     const newWatchList = { uid: inputValue, name: inputValue, stocks: [] };
     let newArr = [...props.watchlists, newWatchList];

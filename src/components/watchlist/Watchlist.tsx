@@ -1,10 +1,13 @@
+// React Dependencies
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
+// Third Party Dependencies
+import axios from 'axios';
+import { Button, Dropdown, Header, Icon, Modal } from 'semantic-ui-react';
+
+// Internal Dependencies
 import { DataTable } from '../dataTable/DataTable';
 import { FilterBar } from '../filterBar/FilterBar';
-
-import { Button, Dropdown, Header, Icon, Modal } from 'semantic-ui-react';
 
 export const Watchlist = (props: any): React.ReactElement => {
   const [stocks, setStocks] = useState<any[]>([]);
@@ -12,26 +15,6 @@ export const Watchlist = (props: any): React.ReactElement => {
   // TODO: rename watchlist feature
   const [renameWatchlist, setRenameWatchlist] = useState<Boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-
-  // Zero state view (no investments in watchlist)
-  const zeroState = (
-    <div className="text-align-center">
-      <Icon name="chart line" size="massive"></Icon>
-      <h4>Nothing in this watchlist yet</h4>
-      <Button>
-        <Icon name="plus"></Icon>
-        Add Investments
-      </Button>
-    </div>
-  );
-
-  // Active state view (has investments in watchlist)
-  const activeState = (
-    <>
-      <FilterBar filters={tags}></FilterBar>
-      <DataTable data={stocks}></DataTable>
-    </>
-  );
 
   // Get stocks for given watchlist
   useEffect(() => {
@@ -44,12 +27,13 @@ export const Watchlist = (props: any): React.ReactElement => {
           setStocks(stocks);
         })
         .catch((err) => {
-          console.log(err.response);
+          // TODO: display error state
+          setStocks([]);
         })
     } else {
       setStocks([]);
     }
-  }, [props.list])
+  }, [props.list]);
 
   // Aggregate tags for stocks
   useEffect(() => {
@@ -63,19 +47,45 @@ export const Watchlist = (props: any): React.ReactElement => {
         })
       })
       setTags(watchlistTags);
-  }, [stocks])
+  }, [stocks]);
+
+  // Active state view (has investments in watchlist)
+  const activeState = (
+    <>
+      <FilterBar filters={tags}></FilterBar>
+      <DataTable data={stocks} onDeleteStock={(deletedStock: any) => deleteStock(deletedStock)}></DataTable>
+    </>
+  );
+
+  // Delete stock
+  const deleteStock = (deletedStock: any) => {
+    const updatedStocks = stocks?.filter((stock: any) => stock.ticker !== deletedStock.ticker);
+    setStocks(updatedStocks);
+  };
+
+  // Zero state view (no investments in watchlist)
+  const zeroState = (
+    <div className="text-align-center">
+      <Icon name="chart line" size="massive"></Icon>
+      <h4>Nothing in this watchlist yet</h4>
+      <Button>
+        <Icon name="plus"></Icon>
+        Add Investments
+      </Button>
+    </div>
+  );
 
   return (
     <>
       <div className="display-flex">
         <Header as="h4">{props.list?.name}</Header>
-          <Dropdown
-            button
-            floating
-            className='icon'
-            direction='right'
-            icon='ellipsis vertical'
-          >
+        <Dropdown
+          button
+          floating
+          className='icon'
+          direction='right'
+          icon='ellipsis vertical'
+        >
           <Dropdown.Menu>
             <Dropdown.Item icon='pencil alternate' text='Rename' onClick={() => setRenameWatchlist(true)}/>
             <Dropdown.Item icon='trash alternate outline' text='Delete' onClick={() => setOpenDeleteModal(true)} />
