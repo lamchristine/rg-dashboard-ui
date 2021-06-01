@@ -81,6 +81,7 @@ export const DataTable = (props: any): React.ReactElement => {
             className="remove-icon"
             size="small"
             onClick={() => props.onDeleteStock(stock)}
+            aria-label="delete"
           >
             <Icon name="close"/>
           </Button>

@@ -86,6 +86,7 @@ export const Watchlist = (props: any): React.ReactElement => {
           className='icon'
           direction='right'
           icon='ellipsis vertical'
+          aria-label="menu"
         >
           <Dropdown.Menu>
             <Dropdown.Item icon='pencil alternate' text='Rename' onClick={() => setRenameWatchlist(true)}/>
