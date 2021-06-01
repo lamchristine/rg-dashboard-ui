@@ -9,8 +9,9 @@ import { PercentageLabel } from '../percentageLabel/PercentageLabel';
 import './DataTable.scss';
 
 export const DataTable = (props: any): React.ReactElement => {
+  const stocks = props.data;
   // Build table rows
-  const tableRows = props.data?.map((stock: any) => {
+  const tableRows = stocks?.map((stock: any) => {
     let price_delta = parseFloat((stock.open_price * stock.delta).toFixed(2));
     let price_delta_display;
     let price_delta_className;

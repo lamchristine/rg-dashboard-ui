@@ -9,7 +9,7 @@ import axios from 'axios';
 import { Watchlist } from '../watchlist/Watchlist';
 import './Main.scss';
 
-export const Main = (props: any): React.ReactElement => {
+export const Main = (): React.ReactElement => {
   const [currentWatchlist, setCurrentWatchlist] = useState<any>();
   const [inputValue, setInputValue] = useState<string>('');
   const [isLoading, setLoading] = useState<boolean>(true);

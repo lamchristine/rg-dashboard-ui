@@ -6,7 +6,7 @@ import { PercentageLabel } from '../percentageLabel/PercentageLabel';
 import './Card.scss';
 
 export const Card = (props: any): React.ReactElement => {
-  const {current_price, name, ticker, ticker_color, delta} = props.stockData;
+  const { current_price, name, ticker, ticker_color, delta } = props.stockData;
 
   return (
     <>

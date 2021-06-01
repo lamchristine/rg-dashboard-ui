@@ -10,6 +10,7 @@ import { DataTable } from '../dataTable/DataTable';
 import { FilterBar } from '../filterBar/FilterBar';
 
 export const Watchlist = (props: any): React.ReactElement => {
+  const watchlist = props.list;
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   // TODO: rename watchlist feature
   const [renameWatchlist, setRenameWatchlist] = useState<Boolean>(false);
@@ -18,8 +19,8 @@ export const Watchlist = (props: any): React.ReactElement => {
 
   // Get stocks for given watchlist
   useEffect(() => {
-    if (props.list) {
-      const apiUrl = 'https://rg-dashboard-api.herokuapp.com/api/v1/watchlists/' + props.list?.uid;
+    if (watchlist) {
+      const apiUrl = 'https://rg-dashboard-api.herokuapp.com/api/v1/watchlists/' + watchlist?.uid;
 
       axios.get(apiUrl)
         .then((response) => {
@@ -33,7 +34,7 @@ export const Watchlist = (props: any): React.ReactElement => {
     } else {
       setStocks([]);
     }
-  }, [props.list]);
+  }, [watchlist]);
 
   // Aggregate tags for stocks
   useEffect(() => {
@@ -78,7 +79,7 @@ export const Watchlist = (props: any): React.ReactElement => {
   return (
     <>
       <div className="display-flex">
-        <Header as="h4">{props.list?.name}</Header>
+        <Header as="h4">{watchlist?.name}</Header>
         <Dropdown
           button
           floating
@@ -104,7 +105,7 @@ export const Watchlist = (props: any): React.ReactElement => {
       >
         <Modal.Content>
           <Modal.Description>
-            <h3>Delete {props.list?.name} watchlist?</h3>
+            <h3>Delete {watchlist?.name} watchlist?</h3>
             <p>This list containing {stocks?.length} investments will be deleted.</p>
           </Modal.Description>
         </Modal.Content>
@@ -114,7 +115,7 @@ export const Watchlist = (props: any): React.ReactElement => {
           </Button>
           <Button primary onClick={() => {
               setOpenDeleteModal(false);
-              props.onDeleteWatchlist(props.list);
+              props.onDeleteWatchlist(watchlist);
             }}
           >
             Done

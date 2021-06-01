@@ -7,7 +7,7 @@ import { AppHeader } from './components/appHeader/AppHeader';
 import { Main } from './components/main/Main';
 import './App.scss';
 
-export const App = (props:any) => {
+export const App = () => {
   return (
     <>
       <AppHeader></AppHeader>
